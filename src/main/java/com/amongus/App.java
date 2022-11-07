@@ -1,6 +1,7 @@
 package com.amongus;
 
 /**
+ * Main Program
  * Hello world!
  *
  */
