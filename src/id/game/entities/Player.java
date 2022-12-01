@@ -31,9 +31,7 @@ public class Player extends Entity {
 
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
-		loadAnimations();
 		initHitbox(x, y, 20 * Game.SCALE, 27 * Game.SCALE);
-
 	}
 
 	public void update() {
@@ -43,6 +41,13 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics g) {
+		loadAnimations1();
+		g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
+//		drawHitbox(g);
+	}
+	
+	public void render2(Graphics g) {
+		loadAnimations2();
 		g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
 //		drawHitbox(g);
 	}
@@ -149,9 +154,20 @@ public class Player extends Entity {
 
 	}
 
-	private void loadAnimations() {
+	private void loadAnimations1() {
 
-		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
+		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER1_ATLAS);
+
+		animations = new BufferedImage[9][6];
+		for (int j = 0; j < animations.length; j++)
+			for (int i = 0; i < animations[j].length; i++)
+				animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
+
+	}
+	
+	private void loadAnimations2() {
+
+		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER2_ATLAS);
 
 		animations = new BufferedImage[9][6];
 		for (int j = 0; j < animations.length; j++)

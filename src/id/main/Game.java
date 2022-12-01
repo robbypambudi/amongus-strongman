@@ -53,7 +53,7 @@ public class Game implements Runnable {
 	public void render(Graphics g) {
 		levelManager.draw(g);
 		player.render(g);
-		player2.render(g);
+		player2.render2(g);
 	}
 
 	@Override
