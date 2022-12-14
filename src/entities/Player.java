@@ -50,15 +50,18 @@ public class Player extends Entity {
 	private Playing playing;
 	private boolean isDirection = true;
 
+	private String name;
+
 	private int tileY = 0;
 
-	public Player(float x, float y, int width, int height, Playing playing) {
+	public Player(float x, float y, int width, int height, Playing playing, String name) {
 		super(x, y, width, height);
 		this.playing = playing;
 		this.state = IDLE;
 		this.maxHealth = 100;
 		this.currentHealth = 35;
 		this.walkSpeed = Game.SCALE * 1.0f;
+		this.name = name;
 		loadAnimations();
 		initHitbox(20, 27);
 		initAttackBox();
@@ -128,6 +131,7 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics g, int lvlOffset) {
+		g.drawString(name, (int) (hitbox.x - xDrawOffset) + 40, (int) (hitbox.y - yDrawOffset) - 10);
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
 //		drawHitbox(g, lvlOffset);
 //		drawAttackBox(g, lvlOffset);

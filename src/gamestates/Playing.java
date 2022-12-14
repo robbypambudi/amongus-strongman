@@ -78,8 +78,8 @@ public class Playing extends State implements Statemethods {
 		enemyManager = new EnemyManager(this);
 		objectManager = new ObjectManager(this);
 
-		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this);
-		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this);
+		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 1");
+		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 2");
 		player1.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player1.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
