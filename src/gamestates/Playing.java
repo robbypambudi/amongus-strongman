@@ -20,8 +20,8 @@ import utilz.LoadSave;
 import static utilz.Constants.Environment.*;
 
 public class Playing extends State implements Statemethods {
-	private Player player1;
-	private Player player2;
+	private static Player player1;
+	private static Player player2;
 	private LevelManager levelManager;
 	private EnemyManager enemyManager;
 	private ObjectManager objectManager;
@@ -78,8 +78,8 @@ public class Playing extends State implements Statemethods {
 		enemyManager = new EnemyManager(this);
 		objectManager = new ObjectManager(this);
 
-		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, this.objectManager);
-		player2 = new Player(1600, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, this.objectManager);
+		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this);
+		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this);
 		player1.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player1.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
@@ -211,7 +211,7 @@ public class Playing extends State implements Statemethods {
 				player1.setJump(true);
 				break;
 			case KeyEvent.VK_F:
-				player1.setAttacking(true);
+				player1.setAttacking1(true);
 				break;
 			case KeyEvent.VK_LEFT:
 				player2.setLeft(true);
@@ -223,7 +223,7 @@ public class Playing extends State implements Statemethods {
 				player2.setJump(true);
 				break;
 			case KeyEvent.VK_L:
-				player2.setAttacking(true);
+				player2.setAttacking2(true);
 				break;
 			case KeyEvent.VK_ESCAPE:
 				paused = !paused;
@@ -310,11 +310,11 @@ public class Playing extends State implements Statemethods {
 		player2.resetDirBooleans();
 	}
 
-	public Player getPlayer1() {
+	public static Player getPlayer1() {
 		return player1;
 	}
 
-	public Player getPlayer2() {
+	public static Player getPlayer2() {
 		return player2;
 	}
 

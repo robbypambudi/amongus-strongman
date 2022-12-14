@@ -12,10 +12,9 @@ import java.awt.image.BufferedImage;
 
 import gamestates.Playing;
 import main.Game;
-import objects.ObjectManager;
 import utilz.LoadSave;
 
-import objects.ObjectManager;
+import static objects.ObjectManager.updateAttackPlayer;
 
 public class Player extends Entity {
 
@@ -49,11 +48,11 @@ public class Player extends Entity {
 
 	private boolean attackChecked;
 	private Playing playing;
-	private ObjectManager obj;
+	private boolean isDirection = true;
 
 	private int tileY = 0;
 
-	public Player(float x, float y, int width, int height, Playing playing, ObjectManager obj) {
+	public Player(float x, float y, int width, int height, Playing playing) {
 		super(x, y, width, height);
 		this.playing = playing;
 		this.state = IDLE;
@@ -290,9 +289,22 @@ public class Player extends Entity {
 		right = false;
 	}
 
-	public void setAttacking(boolean attacking) {
+	public void setAttacking1(boolean attacking) {
 		this.attacking = attacking;
-		obj.updateAttackPlayer(this);
+		int direction = -1;
+		if (isDirection) {
+			direction = 1;
+		}
+		updateAttackPlayer(this, direction);
+	}
+
+	public void setAttacking2(boolean attacking) {
+		this.attacking = attacking;
+		int direction = -1;
+		if (isDirection) {
+			direction = 1;
+		}
+		updateAttackPlayer(this, direction);
 	}
 
 	public boolean isLeft() {
@@ -301,6 +313,7 @@ public class Player extends Entity {
 
 	public void setLeft(boolean left) {
 		this.left = left;
+		isDirection = false;
 	}
 
 	public boolean isRight() {
@@ -309,6 +322,7 @@ public class Player extends Entity {
 
 	public void setRight(boolean right) {
 		this.right = right;
+		isDirection = true;
 	}
 
 	public void setJump(boolean jump) {

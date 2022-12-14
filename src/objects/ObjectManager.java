@@ -14,11 +14,12 @@ import static utilz.Constants.ObjectConstants.*;
 import static utilz.HelpMethods.CanCannonSeePlayer;
 import static utilz.HelpMethods.IsProjectileHittingLevel;
 import static utilz.Constants.Projectiles.*;
+import static gamestates.Playing.*;
 
 public class ObjectManager {
 
 	private Playing playing;
-	private Player player;
+	// private Player player;
 	private BufferedImage[][] potionImgs, containerImgs;
 	private BufferedImage[] cannonImgs;
 	private BufferedImage spikeImg, cannonBallImg;
@@ -26,7 +27,7 @@ public class ObjectManager {
 	private ArrayList<GameContainer> containers;
 	private ArrayList<Spike> spikes;
 	private ArrayList<Cannon> cannons;
-	private ArrayList<Projectile> projectiles = new ArrayList<>();
+	private static ArrayList<Projectile> projectiles = new ArrayList<>();
 
 	public ObjectManager(Playing playing) {
 		this.playing = playing;
@@ -51,12 +52,12 @@ public class ObjectManager {
 
 	public void applyEffectToPlayer(Potion p) {
 		if (p.getObjType() == RED_POTION){
-			playing.getPlayer1().changeHealth(RED_POTION_VALUE);	
-			playing.getPlayer2().changeHealth(RED_POTION_VALUE);	
+			getPlayer1().changeHealth(RED_POTION_VALUE);	
+			getPlayer2().changeHealth(RED_POTION_VALUE);	
 		}
 		else{
-			playing.getPlayer1().changePower(BLUE_POTION_VALUE);
-			playing.getPlayer2().changePower(BLUE_POTION_VALUE);
+			getPlayer1().changePower(BLUE_POTION_VALUE);
+			getPlayer2().changePower(BLUE_POTION_VALUE);
 		}
 	}
 
@@ -164,9 +165,12 @@ public class ObjectManager {
 		}
 	}
 
-	public void updateAttackPlayer(Player p)  {
-		int dir = 1;
-		projectiles.add(new Projectile((int) p.getHitbox().x, (int) p.getHitbox().y, dir));
+	public static void updateAttackPlayer(Player p, int dir)  {
+		int temp = 0;
+		if(dir == -1) {
+			temp = 32;
+		}
+		projectiles.add(new Projectile((int) p.getHitbox().x - temp, (int) p.getHitbox().y, dir));
 	}
 
 	private void shootCannon(Cannon c) {

@@ -16,8 +16,11 @@ import objects.GameContainer;
 import objects.Potion;
 import objects.Projectile;
 import objects.Spike;
+import static gamestates.Playing.*;
 
 public class HelpMethods {
+
+	// private Playing playing;
 
 	public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
 		if (!IsSolid(x, y, lvlData))
@@ -29,7 +32,13 @@ public class HelpMethods {
 	}
 
 	private static boolean IsSolid(float x, float y, int[][] lvlData) {
+		int lmao = (int)getPlayer2().getHitbox().x - (int)getPlayer1().getHitbox().x;
+		lmao = (lmao / 32) * 32;
 		int maxWidth = lvlData[0].length * Game.TILES_SIZE;
+		if (lmao >= Game.GAME_WIDTH - 256 || (lmao*-1) >= Game.GAME_WIDTH - 256) {
+			System.out.println(lmao);
+			return true;
+		}
 		if (x < 0 || x >= maxWidth)
 			return true;
 		if (y < 0 || y >= Game.GAME_HEIGHT)
