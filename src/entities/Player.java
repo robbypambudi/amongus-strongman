@@ -59,7 +59,7 @@ public class Player extends Entity {
 		this.playing = playing;
 		this.state = IDLE;
 		this.maxHealth = 100;
-		this.currentHealth = 35;
+		this.currentHealth = 100;
 		this.walkSpeed = Game.SCALE * 1.0f;
 		this.healthBarXStart = (int) (xHealth * Game.SCALE);
 		this.statusBarX = (int) (statusBarX * Game.SCALE);
@@ -87,10 +87,9 @@ public class Player extends Entity {
 			playing.setGameOver(true);
 			return;
 		}
-
 		updateAttackBox();
-
 		updatePos();
+
 		if (moving) {
 			checkPotionTouched();
 			checkSpikesTouched();
@@ -105,6 +104,10 @@ public class Player extends Entity {
 
 	private void checkSpikesTouched() {
 		playing.checkSpikesTouched(this);
+	}
+
+	public boolean getAttack() {
+		return this.attacking;
 	}
 
 	private void checkPotionTouched() {
@@ -263,13 +266,14 @@ public class Player extends Entity {
 	public void changeHealth(int value) {
 		currentHealth += value;
 
-		if (currentHealth <= 0)
+		if (currentHealth <= 0) {
 			currentHealth = 0;
-		else if (currentHealth >= maxHealth)
+		} else if (currentHealth >= maxHealth)
 			currentHealth = maxHealth;
 	}
 
 	public void kill() {
+		setJump(false);
 		currentHealth = 0;
 	}
 

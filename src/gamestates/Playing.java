@@ -80,8 +80,8 @@ public class Playing extends State implements Statemethods {
 
 		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 1", 34, 10);
 		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 2",
-				Game.GAME_WIDTH / 40,
-				Game.GAME_WIDTH / 2);
+				Game.GAME_WIDTH / 60,
+				Game.GAME_WIDTH / 3);
 		player1.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player1.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
@@ -215,7 +215,8 @@ public class Playing extends State implements Statemethods {
 					player1.setJump(true);
 					break;
 				case KeyEvent.VK_F:
-					player1.setAttacking1(true);
+					if (!player1.getAttack())
+						player1.setAttacking1(true);
 					break;
 				case KeyEvent.VK_LEFT:
 					player2.setLeft(true);
