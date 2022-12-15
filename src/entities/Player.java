@@ -131,7 +131,8 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics g, int lvlOffset) {
-		g.drawString(name, (int) (hitbox.x - xDrawOffset) + 40, (int) (hitbox.y - yDrawOffset) - 10);
+		g.setFont(g.getFont().deriveFont(20f));
+		g.drawString(name, (int) (hitbox.x - xDrawOffset) - lvlOffset, (int) (hitbox.y - yDrawOffset) - 10);
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
 //		drawHitbox(g, lvlOffset);
 //		drawAttackBox(g, lvlOffset);
