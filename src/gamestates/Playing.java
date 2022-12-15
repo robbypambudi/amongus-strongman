@@ -228,7 +228,8 @@ public class Playing extends State implements Statemethods {
 					player2.setJump(true);
 					break;
 				case KeyEvent.VK_L:
-					player2.setAttacking2(true);
+					if (!player2.getAttack())
+						player2.setAttacking1(true);
 					break;
 				case KeyEvent.VK_ESCAPE:
 					paused = !paused;
