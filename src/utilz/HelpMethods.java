@@ -33,10 +33,19 @@ public class HelpMethods {
 
 	private static boolean IsSolid(float x, float y, int[][] lvlData) {
 		int lmao = (int)getPlayer2().getHitbox().x - (int)getPlayer1().getHitbox().x;
-		lmao = ((lmao / 64) + 2) * 64;
+		lmao = ((lmao / 64) + 4) * 64;
+		if (lmao < 0) {
+			lmao = ((lmao / 64) - 4) * 64;	
+		}
 		int maxWidth = lvlData[0].length * Game.TILES_SIZE;
-		if (lmao >= Game.GAME_WIDTH - 256) {
-			if (x < ((((int)getPlayer1().getHitbox().x/64) - 1)*64)  || x >= ((((int)getPlayer2().getHitbox().x/64) + 1)*64)) {
+		if (lmao >= 1536) {
+			if (x < ((((int)getPlayer1().getHitbox().x/64) - 1)*64) || x >= ((((int)getPlayer2().getHitbox().x/64) + 1)*64)) {
+				System.out.println(((((int)getPlayer1().getHitbox().x/64) - 1)*64));
+				return true;
+			}
+		}
+		if (lmao <= -1536) {
+			if (x < ((((int)getPlayer2().getHitbox().x/64) - 1)*64) || x >= ((((int)getPlayer1().getHitbox().x/64) + 1)*64)) {
 				System.out.println(((((int)getPlayer1().getHitbox().x/64) - 1)*64));
 				return true;
 			}
