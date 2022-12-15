@@ -54,13 +54,15 @@ public class Player extends Entity {
 
 	private int tileY = 0;
 
-	public Player(float x, float y, int width, int height, Playing playing, String name) {
+	public Player(float x, float y, int width, int height, Playing playing, String name, int xHealth, int statusBarX) {
 		super(x, y, width, height);
 		this.playing = playing;
 		this.state = IDLE;
 		this.maxHealth = 100;
 		this.currentHealth = 35;
 		this.walkSpeed = Game.SCALE * 1.0f;
+		this.healthBarXStart = (int) (xHealth * Game.SCALE);
+		this.statusBarX = (int) (statusBarX * Game.SCALE);
 		this.name = name;
 		loadAnimations();
 		initHitbox(20, 27);
@@ -133,16 +135,18 @@ public class Player extends Entity {
 	public void render(Graphics g, int lvlOffset) {
 		g.setFont(g.getFont().deriveFont(20f));
 		g.drawString(name, (int) (hitbox.x - xDrawOffset) - lvlOffset, (int) (hitbox.y - yDrawOffset) - 10);
-		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
-//		drawHitbox(g, lvlOffset);
-//		drawAttackBox(g, lvlOffset);
+		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX,
+				(int) (hitbox.y - yDrawOffset), width * flipW, height, null);
+		// drawHitbox(g, lvlOffset);
+		// drawAttackBox(g, lvlOffset);
 		drawUI(g);
 	}
 
 	private void drawUI(Graphics g) {
 		g.drawImage(statusBarImg, statusBarX, statusBarY, statusBarWidth, statusBarHeight, null);
 		g.setColor(Color.red);
-		g.fillRect(healthBarXStart + statusBarX, healthBarYStart + statusBarY, healthWidth, healthBarHeight);
+		g.fillRect(healthBarXStart + statusBarX, healthBarYStart + statusBarY,
+				healthWidth, healthBarHeight);
 	}
 
 	private void updateAnimationTick() {
@@ -348,7 +352,7 @@ public class Player extends Entity {
 		if (!IsEntityOnFloor(hitbox, lvlData))
 			inAir = true;
 	}
-	
+
 	public int getTileY() {
 		return tileY;
 	}

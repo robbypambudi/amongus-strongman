@@ -32,14 +32,14 @@ public class HelpMethods {
 	}
 
 	private static boolean IsSolid(float x, float y, int[][] lvlData) {
-		int lmao = (int)getPlayer2().getHitbox().x - (int)getPlayer1().getHitbox().x;
+		int lmao = (int) getPlayer2().getHitbox().x - (int) getPlayer1().getHitbox().x;
 		lmao = ((lmao / 32) + 2) * 32;
 		int maxWidth = lvlData[0].length * Game.TILES_SIZE;
-		if (lmao >= Game.GAME_WIDTH - 256 || (lmao*-1) >= Game.GAME_WIDTH - 256) {
+		if (lmao >= Game.GAME_WIDTH - 256 || (lmao * -1) >= Game.GAME_WIDTH - 256) {
 			System.out.println(lmao);
 			return true;
 		}
-		if (x < 0 || x >= maxWidth || x >= lmao)
+		if (x < 0 || x >= maxWidth)
 			return true;
 		if (y < 0 || y >= Game.GAME_HEIGHT)
 			return true;
@@ -67,6 +67,7 @@ public class HelpMethods {
 		if (xSpeed > 0) {
 			// Right
 			int tileXPos = currentTile * Game.TILES_SIZE;
+			System.out.println(tileXPos);
 			int xOffset = (int) (Game.TILES_SIZE - hitbox.width);
 			return tileXPos + xOffset - 1;
 		} else
@@ -101,7 +102,8 @@ public class HelpMethods {
 			return IsSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
 	}
 
-	public static boolean CanCannonSeePlayer(int[][] lvlData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int yTile) {
+	public static boolean CanCannonSeePlayer(int[][] lvlData, Rectangle2D.Float firstHitbox,
+			Rectangle2D.Float secondHitbox, int yTile) {
 		int firstXTile = (int) (firstHitbox.x / Game.TILES_SIZE);
 		int secondXTile = (int) (secondHitbox.x / Game.TILES_SIZE);
 
@@ -127,7 +129,8 @@ public class HelpMethods {
 		return true;
 	}
 
-	public static boolean IsSightClear(int[][] lvlData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int yTile) {
+	public static boolean IsSightClear(int[][] lvlData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox,
+			int yTile) {
 		int firstXTile = (int) (firstHitbox.x / Game.TILES_SIZE);
 		int secondXTile = (int) (secondHitbox.x / Game.TILES_SIZE);
 
