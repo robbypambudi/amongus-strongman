@@ -78,8 +78,10 @@ public class Playing extends State implements Statemethods {
 		enemyManager = new EnemyManager(this);
 		objectManager = new ObjectManager(this);
 
-		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 1");
-		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 2");
+		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 1", 34, 10);
+		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 2",
+				Game.GAME_WIDTH / 40,
+				Game.GAME_WIDTH / 2);
 		player1.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player1.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
@@ -154,10 +156,12 @@ public class Playing extends State implements Statemethods {
 
 	private void drawClouds(Graphics g) {
 		for (int i = 0; i < 3; i++)
-			g.drawImage(bigCloud, i * BIG_CLOUD_WIDTH - (int) (xLvlOffset * 0.3), (int) (204 * Game.SCALE), BIG_CLOUD_WIDTH, BIG_CLOUD_HEIGHT, null);
+			g.drawImage(bigCloud, i * BIG_CLOUD_WIDTH - (int) (xLvlOffset * 0.3), (int) (204 * Game.SCALE), BIG_CLOUD_WIDTH,
+					BIG_CLOUD_HEIGHT, null);
 
 		for (int i = 0; i < smallCloudsPos.length; i++)
-			g.drawImage(smallCloud, SMALL_CLOUD_WIDTH * 4 * i - (int) (xLvlOffset * 0.7), smallCloudsPos[i], SMALL_CLOUD_WIDTH, SMALL_CLOUD_HEIGHT, null);
+			g.drawImage(smallCloud, SMALL_CLOUD_WIDTH * 4 * i - (int) (xLvlOffset * 0.7), smallCloudsPos[i],
+					SMALL_CLOUD_WIDTH, SMALL_CLOUD_HEIGHT, null);
 	}
 
 	public void resetAll() {
@@ -192,7 +196,7 @@ public class Playing extends State implements Statemethods {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+
 	}
 
 	@Override
@@ -201,33 +205,33 @@ public class Playing extends State implements Statemethods {
 			gameOverOverlay.keyPressed(e);
 		else
 			switch (e.getKeyCode()) {
-			case KeyEvent.VK_A:
-				player1.setLeft(true);
-				break;
-			case KeyEvent.VK_D:
-				player1.setRight(true);
-				break;
-			case KeyEvent.VK_W:
-				player1.setJump(true);
-				break;
-			case KeyEvent.VK_F:
-				player1.setAttacking1(true);
-				break;
-			case KeyEvent.VK_LEFT:
-				player2.setLeft(true);
-				break;
-			case KeyEvent.VK_RIGHT:
-				player2.setRight(true);
-				break;
-			case KeyEvent.VK_UP:
-				player2.setJump(true);
-				break;
-			case KeyEvent.VK_L:
-				player2.setAttacking2(true);
-				break;
-			case KeyEvent.VK_ESCAPE:
-				paused = !paused;
-				break;
+				case KeyEvent.VK_A:
+					player1.setLeft(true);
+					break;
+				case KeyEvent.VK_D:
+					player1.setRight(true);
+					break;
+				case KeyEvent.VK_W:
+					player1.setJump(true);
+					break;
+				case KeyEvent.VK_F:
+					player1.setAttacking1(true);
+					break;
+				case KeyEvent.VK_LEFT:
+					player2.setLeft(true);
+					break;
+				case KeyEvent.VK_RIGHT:
+					player2.setRight(true);
+					break;
+				case KeyEvent.VK_UP:
+					player2.setJump(true);
+					break;
+				case KeyEvent.VK_L:
+					player2.setAttacking2(true);
+					break;
+				case KeyEvent.VK_ESCAPE:
+					paused = !paused;
+					break;
 			}
 	}
 
@@ -235,24 +239,24 @@ public class Playing extends State implements Statemethods {
 	public void keyReleased(KeyEvent e) {
 		if (!gameOver)
 			switch (e.getKeyCode()) {
-			case KeyEvent.VK_A:
-				player1.setLeft(false);
-				break;
-			case KeyEvent.VK_D:
-				player1.setRight(false);
-				break;
-			case KeyEvent.VK_W:
-				player1.setJump(false);
-				break;
-			case KeyEvent.VK_LEFT:
-				player2.setLeft(false);
-				break;
-			case KeyEvent.VK_RIGHT:
-				player2.setRight(false);
-				break;
-			case KeyEvent.VK_UP:
-				player2.setJump(false);
-				break;
+				case KeyEvent.VK_A:
+					player1.setLeft(false);
+					break;
+				case KeyEvent.VK_D:
+					player1.setRight(false);
+					break;
+				case KeyEvent.VK_W:
+					player1.setJump(false);
+					break;
+				case KeyEvent.VK_LEFT:
+					player2.setLeft(false);
+					break;
+				case KeyEvent.VK_RIGHT:
+					player2.setRight(false);
+					break;
+				case KeyEvent.VK_UP:
+					player2.setJump(false);
+					break;
 			}
 
 	}
