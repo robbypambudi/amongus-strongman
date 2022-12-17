@@ -39,18 +39,18 @@ public class HelpMethods {
 		}
 		int maxWidth = lvlData[0].length * Game.TILES_SIZE;
 		if (lmao >= 1536) {
-			if (x < ((((int)getPlayer1().getHitbox().x/64) - 1)*64) || x >= ((((int)getPlayer2().getHitbox().x/64) + 1)*64)) {
+			if (x <= ((((int)getPlayer1().getHitbox().x/64)+1)*64) || x >= ((((int)getPlayer2().getHitbox().x/64)+1)*64)) {
 				System.out.println(((((int)getPlayer1().getHitbox().x/64) - 1)*64));
 				return true;
 			}
 		}
-		if (lmao <= -1536) {
-			if (x < ((((int)getPlayer2().getHitbox().x/64) - 1)*64) || x >= ((((int)getPlayer1().getHitbox().x/64) + 1)*64)) {
+		else if (lmao <= -1536) {
+			if (x <= ((((int)getPlayer2().getHitbox().x/64)+1)*64) || x >= ((((int)getPlayer1().getHitbox().x/64)+1)*64)) {
 				System.out.println(((((int)getPlayer1().getHitbox().x/64) - 1)*64));
 				return true;
 			}
 		}
-		if (x < 128 || x >= maxWidth)
+		if (x < 0 || x >= maxWidth)
 			return true;
 		if (y < 0 || y >= Game.GAME_HEIGHT)
 			return true;
