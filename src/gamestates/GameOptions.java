@@ -80,7 +80,7 @@ public class GameOptions extends State implements Statemethods {
         Gamestate.state = Gamestate.MENU;
       }
     } else {
-      audioOptions.mousePressed(e);
+      audioOptions.mouseReleased(e);
     }
 
     menuB.resetBools();
