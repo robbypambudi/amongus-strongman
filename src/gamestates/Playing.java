@@ -151,7 +151,7 @@ public class Playing extends State implements Statemethods {
 		drawClouds(g);
 
 		levelManager.draw(g, xLvlOffset);
-		player1.render(g, xLvlOffset = );
+		player1.render(g, xLvlOffset);
 		player2.render(g, xLvlOffset);
 		enemyManager.draw(g, xLvlOffset);
 		objectManager.draw(g, xLvlOffset);
