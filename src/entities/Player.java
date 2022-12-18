@@ -381,4 +381,12 @@ public class Player extends Entity {
 		this.flipW = flipW;
 	}
 
+	public void setFlipX(int flipX) {
+		this.flipX = flipX;
+	}
+
+	public int getWidth() {
+		return this.width;
+	}
+
 }

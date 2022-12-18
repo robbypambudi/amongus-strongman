@@ -1,6 +1,7 @@
 package objects;
 
 import static utilz.Constants.ANI_SPEED;
+import static utilz.Constants.OBJ_SPEED;
 import static utilz.Constants.ObjectConstants.*;
 
 import java.awt.Color;
@@ -25,7 +26,7 @@ public class GameObject {
 
 	protected void updateAnimationTick() {
 		aniTick++;
-		if (aniTick >= ANI_SPEED) {
+		if (aniTick >= OBJ_SPEED) {
 			aniTick = 0;
 			aniIndex++;
 			if (aniIndex >= GetSpriteAmount(objType)) {

@@ -83,12 +83,12 @@ public class Playing extends State implements Statemethods {
 		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 2",
 				Game.GAME_WIDTH / 48,
 				(int) (Game.GAME_WIDTH / 3));
-		// player2.setFlipW(-1);
 		player1.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player1.setSpawn(992, 400);
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player2.setSpawn(1632, 400);
-
+		player2.setFlipW(-1);
+		player2.setFlipX(player2.getWidth());
 		pauseOverlay = new PauseOverlay(this);
 		gameOverOverlay = new GameOverOverlay(this);
 		levelCompletedOverlay = new LevelCompletedOverlay(this);
