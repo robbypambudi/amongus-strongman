@@ -377,4 +377,8 @@ public class Player extends Entity {
 		return tileY;
 	}
 
+	public void setFlipW(int flipW) {
+		this.flipW = flipW;
+	}
+
 }
