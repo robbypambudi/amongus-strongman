@@ -65,12 +65,6 @@ public class GameOptions extends State implements Statemethods {
   }
 
   @Override
-  public void mouseClicked(MouseEvent e) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
   public void mousePressed(MouseEvent e) {
     if (isIn(e, menuB)) {
       menuB.setMousePressed(true);
@@ -106,6 +100,11 @@ public class GameOptions extends State implements Statemethods {
   public void keyPressed(KeyEvent e) {
     if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
       Gamestate.state = Gamestate.MENU;
+
+  }
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    // TODO Auto-generated method stub
 
   }
 
