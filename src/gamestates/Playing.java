@@ -81,8 +81,8 @@ public class Playing extends State implements Statemethods {
 
 		player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 1", 34, 10);
 		player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, "Amogus 2",
-				Game.GAME_WIDTH / 60,
-				(int) (Game.GAME_WIDTH / 3.5));
+				Game.GAME_WIDTH / 48,
+				(int) (Game.GAME_WIDTH / 3));
 		player1.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player1.setSpawn(200, 400);
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
