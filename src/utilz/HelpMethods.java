@@ -38,13 +38,13 @@ public class HelpMethods {
 			lmao = ((lmao / 64) - 4) * 64;	
 		}
 		int maxWidth = lvlData[0].length * Game.TILES_SIZE;
-		if (lmao >= 1536) {
+		if (lmao >= (Game.GAME_WIDTH) - 256) {
 			if (x <= ((((int)getPlayer1().getHitbox().x/64)+1)*64) || x >= ((((int)getPlayer2().getHitbox().x/64)+1)*64)) {
 				System.out.println(((((int)getPlayer1().getHitbox().x/64) - 1)*64));
 				return true;
 			}
 		}
-		else if (lmao <= -1536) {
+		else if (lmao <= -Game.GAME_WIDTH + 320) {
 			if (x <= ((((int)getPlayer2().getHitbox().x/64)+1)*64) || x >= ((((int)getPlayer1().getHitbox().x/64)+1)*64)) {
 				System.out.println(((((int)getPlayer1().getHitbox().x/64) - 1)*64));
 				return true;

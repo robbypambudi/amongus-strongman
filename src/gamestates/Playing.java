@@ -268,7 +268,6 @@ public class Playing extends State implements Statemethods {
 					player2.setJump(false);
 					break;
 			}
-
 	}
 
 	public void mouseDragged(MouseEvent e) {
