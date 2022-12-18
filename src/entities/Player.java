@@ -70,9 +70,11 @@ public class Player extends Entity {
 		initAttackBox();
 	}
 
-	public void setSpawn(int spawnX, int spawnY) {
+	public void setSpawn(int spawnX, int spawnY, int flipW, int flipX) {
 		this.x = spawnX;
 		this.y = spawnY;
+		this.flipW = flipW;
+		this.flipX = flipX;
 		hitbox.x = x;
 		hitbox.y = y;
 	}
@@ -81,9 +83,8 @@ public class Player extends Entity {
 		attackBox = new Rectangle2D.Float(x, y, (int) (20 * Game.SCALE), (int) (20 * Game.SCALE));
 	}
 
-	public void update() {
+	public void update(int flipW, int flipX) {
 		updateHealthBar();
-
 		if (currentHealth <= 0) {
 			// Jika plater mati
 			if (state != DEAD) {
@@ -92,6 +93,8 @@ public class Player extends Entity {
 				aniIndex = 0;
 				playing.setPlayerDying(true);
 				playing.getGame().getAudioPlayer().playEffect(AudioPlayer.DIE);
+				this.flipW = flipW;
+				this.flipX = flipX;
 			} else if (aniIndex == GetSpriteAmount(DEAD) - 1 && aniTick >= ANI_SPEED - 1) {
 				playing.setGameOver(true);
 				playing.getGame().getAudioPlayer().stopSong();

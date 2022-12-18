@@ -61,8 +61,10 @@ public class Playing extends State implements Statemethods {
 	public void loadNextLevel() {
 		resetAll();
 		levelManager.loadNextLevel();
-		player1.setSpawn(900, 400);
-		player2.setSpawn(1500, 400);
+		// player1.setSpawn(900, 400);
+		// player2.setSpawn(1500, 400);
+		player1.setSpawn(992, 400, 1, 0);
+		player2.setSpawn(1632, 400, -1, player2.getWidth());
 	}
 
 	private void loadStartLevel() {
@@ -84,11 +86,11 @@ public class Playing extends State implements Statemethods {
 				Game.GAME_WIDTH / 48,
 				(int) (Game.GAME_WIDTH / 3));
 		player1.loadLvlData(levelManager.getCurrentLevel().getLevelData());
-		player1.setSpawn(992, 400);
+		player1.setSpawn(992, 400, 1, 0);
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
-		player2.setSpawn(1632, 400);
-		player2.setFlipW(-1);
-		player2.setFlipX(player2.getWidth());
+		player2.setSpawn(1632, 400, -1, player2.getWidth());
+		// player2.setFlipW(-1);
+		// player2.setFlipX(player2.getWidth());
 		pauseOverlay = new PauseOverlay(this);
 		gameOverOverlay = new GameOverOverlay(this);
 		levelCompletedOverlay = new LevelCompletedOverlay(this);
@@ -103,15 +105,15 @@ public class Playing extends State implements Statemethods {
 		} else if (gameOver) {
 			gameOverOverlay.update();
 		} else if (playerDying) {
-			player1.update();
-			player2.update();
+			player1.update(-1, 0);
+			player2.update(-1, player2.getWidth());
 
 		} else if (!gameOver) {
 			levelManager.update();
 			objectManager.update(levelManager.getCurrentLevel().getLevelData(), player1);
 			objectManager.update(levelManager.getCurrentLevel().getLevelData(), player2);
-			player1.update();
-			player2.update();
+			player1.update(-1, 0);
+			player2.update(-1, player2.getWidth());
 			enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player1);
 			enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player2);
 			checkCloseToBorder();
