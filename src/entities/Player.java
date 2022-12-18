@@ -70,9 +70,9 @@ public class Player extends Entity {
 		initAttackBox();
 	}
 
-	public void setSpawn(Point spawn) {
-		this.x = spawn.x;
-		this.y = spawn.y;
+	public void setSpawn(int spawnX, int spawnY) {
+		this.x = spawnX;
+		this.y = spawnY;
 		hitbox.x = x;
 		hitbox.y = y;
 	}
