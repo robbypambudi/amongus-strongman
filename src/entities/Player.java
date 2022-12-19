@@ -156,7 +156,7 @@ public class Player extends Entity {
 	public void render(Graphics g, int lvlOffset) {
 		Font myFont = new Font ("Cherry Bomb", 1, 17);
 		g.setFont (myFont);
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.drawString(name, (int) (hitbox.x - xDrawOffset) - lvlOffset + 25, (int) (hitbox.y - yDrawOffset) - 10);
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX,
 				(int) (hitbox.y - yDrawOffset), width * flipW, height, null);
