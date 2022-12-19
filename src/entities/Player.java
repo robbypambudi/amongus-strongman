@@ -6,7 +6,6 @@ import static utilz.Constants.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.Font;
@@ -108,8 +107,7 @@ public class Player extends Entity {
 		updatePos();
 
 		if (moving) {
-			checkPotionTouched();
-			checkSpikesTouched();
+		
 			tileY = (int) (hitbox.y / Game.TILES_SIZE);
 		}
 		if (attacking)
@@ -119,23 +117,16 @@ public class Player extends Entity {
 		setAnimation();
 	}
 
-	private void checkSpikesTouched() {
-		playing.checkSpikesTouched(this);
-	}
 
 	public boolean getAttack() {
 		return this.attacking;
 	}
 
-	private void checkPotionTouched() {
-		playing.checkPotionTouched(hitbox);
-	}
 
 	private void checkAttack() {
 		if (attackChecked || aniIndex != 1)
 			return;
 		attackChecked = true;
-		playing.checkEnemyHit(attackBox);
 		playing.checkObjectHit(attackBox);
 		playing.getGame().getAudioPlayer().playAttackSound();
 	}

@@ -26,6 +26,7 @@ public class State {
 		switch (state) {
 			case MENU -> game.getAudioPlayer().playSong(AudioPlayer.MENU_1);
 			case PLAYING -> game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getLevelIndex());
+			default -> throw new IllegalArgumentException("Unexpected value: " + state);
 		}
 
 		Gamestate.state = state;

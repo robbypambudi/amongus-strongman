@@ -8,11 +8,9 @@ import gamestates.Gamestate;
 import gamestates.Menu;
 import gamestates.Playing;
 import ui.AudioOptions;
-import utilz.LoadSave;
 
 public class Game implements Runnable {
 
-	private GameWindow gameWindow;
 	private GamePanel gamePanel;
 	private Thread gameThread;
 	private final int FPS_SET = 120;
@@ -36,7 +34,7 @@ public class Game implements Runnable {
 		initClasses();
 
 		gamePanel = new GamePanel(this);
-		gameWindow = new GameWindow(gamePanel);
+		new GameWindow(gamePanel);
 		gamePanel.setFocusable(true);
 		gamePanel.requestFocus();
 
@@ -138,8 +136,8 @@ public class Game implements Runnable {
 
 	public void windowFocusLost() {
 		if (Gamestate.state == Gamestate.PLAYING) {
-			playing.getPlayer1().resetDirBooleans();
-			playing.getPlayer2().resetDirBooleans();
+			Playing.getPlayer1().resetDirBooleans();
+			Playing.getPlayer2().resetDirBooleans();
 		}
 	}
 
