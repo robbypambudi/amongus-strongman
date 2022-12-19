@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.Font;
 
 import audio.AudioPlayer;
 import gamestates.Playing;
@@ -65,7 +66,6 @@ public class Player extends Entity {
 		this.healthBarXStart = (int) (xHealth * Game.SCALE);
 		this.statusBarX = (int) (statusBarX * Game.SCALE);
 		this.name = name;
-		loadAnimations();
 		initHitbox(20, 27);
 		initAttackBox();
 	}
@@ -154,8 +154,10 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics g, int lvlOffset) {
-		g.setFont(g.getFont().deriveFont(20f));
-		g.drawString(name, (int) (hitbox.x - xDrawOffset) - lvlOffset, (int) (hitbox.y - yDrawOffset) - 10);
+		Font myFont = new Font ("Cherry Bomb", 1, 17);
+		g.setFont (myFont);
+		g.setColor(Color.BLACK);
+		g.drawString(name, (int) (hitbox.x - xDrawOffset) - lvlOffset + 25, (int) (hitbox.y - yDrawOffset) - 10);
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX,
 				(int) (hitbox.y - yDrawOffset), width * flipW, height, null);
 		// drawHitbox(g, lvlOffset);
@@ -300,8 +302,18 @@ public class Player extends Entity {
 		System.out.println("Added power!");
 	}
 
-	private void loadAnimations() {
-		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
+	public void loadAnimations1() {
+		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER1_ATLAS);
+		animations = new BufferedImage[7][8];
+		for (int j = 0; j < animations.length; j++)
+			for (int i = 0; i < animations[j].length; i++)
+				animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
+
+		statusBarImg = LoadSave.GetSpriteAtlas(LoadSave.STATUS_BAR);
+	}
+
+	public void loadAnimations2() {
+		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER2_ATLAS);
 		animations = new BufferedImage[7][8];
 		for (int j = 0; j < animations.length; j++)
 			for (int i = 0; i < animations[j].length; i++)
