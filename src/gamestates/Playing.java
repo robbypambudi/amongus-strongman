@@ -11,7 +11,6 @@ import levels.LevelManager;
 import main.Game;
 import objects.ObjectManager;
 import ui.GameOverOverlay;
-import ui.LevelCompletedOverlay;
 import ui.PauseOverlay;
 import utilz.LoadSave;
 
@@ -22,7 +21,6 @@ public class Playing extends State implements Statemethods {
 	private ObjectManager objectManager;
 	private PauseOverlay pauseOverlay;
 	private GameOverOverlay gameOverOverlay;
-	private LevelCompletedOverlay levelCompletedOverlay;
 	private boolean paused = false;
 
 	private int xLvlOffset;
@@ -33,7 +31,6 @@ public class Playing extends State implements Statemethods {
 	private BufferedImage backgroundImg;
 
 	private boolean gameOver;
-	private boolean lvlCompleted;
 	private boolean playerDying;
 
 	public Playing(Game game) {
@@ -49,8 +46,6 @@ public class Playing extends State implements Statemethods {
 	public void loadNextLevel() {
 		resetAll();
 		levelManager.loadNextLevel();
-		// player1.setSpawn(900, 400);
-		// player2.setSpawn(1500, 400);
 		player1.setSpawn(992, 400, 1, 0);
 		player2.setSpawn(1632, 400, -1, player2.getWidth());
 	}
@@ -77,19 +72,15 @@ public class Playing extends State implements Statemethods {
 		player1.setSpawn(992, 400, 1, 0);
 		player2.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player2.setSpawn(1632, 400, -1, player2.getWidth());
-		// player2.setFlipW(-1);
-		// player2.setFlipX(player2.getWidth());
+		
 		pauseOverlay = new PauseOverlay(this);
 		gameOverOverlay = new GameOverOverlay(this);
-		levelCompletedOverlay = new LevelCompletedOverlay(this);
 	}
 
 	@Override
 	public void update() {
 		if (paused) {
 			pauseOverlay.update();
-		} else if (lvlCompleted) {
-			levelCompletedOverlay.update();
 		} else if (gameOver) {
 			gameOverOverlay.update();
 		} else if (playerDying) {
@@ -143,14 +134,12 @@ public class Playing extends State implements Statemethods {
 			pauseOverlay.draw(g);
 		} else if (gameOver)
 			gameOverOverlay.draw(g);
-		else if (lvlCompleted)
-			levelCompletedOverlay.draw(g);
+	
 	}
 
 	public void resetAll() {
 		gameOver = false;
 		paused = false;
-		lvlCompleted = false;
 		playerDying = false;
 		player1.resetAll();
 		player2.resetAll();
@@ -245,8 +234,7 @@ public class Playing extends State implements Statemethods {
 		if (!gameOver) {
 			if (paused)
 				pauseOverlay.mousePressed(e);
-			else if (lvlCompleted)
-				levelCompletedOverlay.mousePressed(e);
+			
 		} else {
 			gameOverOverlay.mousePressed(e);
 		}
@@ -257,8 +245,7 @@ public class Playing extends State implements Statemethods {
 		if (!gameOver) {
 			if (paused)
 				pauseOverlay.mouseReleased(e);
-			else if (lvlCompleted)
-				levelCompletedOverlay.mouseReleased(e);
+			
 		} else
 			gameOverOverlay.mouseReleased(e);
 	}
@@ -268,18 +255,12 @@ public class Playing extends State implements Statemethods {
 		if (!gameOver) {
 			if (paused)
 				pauseOverlay.mouseMoved(e);
-			else if (lvlCompleted)
-				levelCompletedOverlay.mouseMoved(e);
+			
 		} else
 			gameOverOverlay.mouseMoved(e);
 	}
 
-	public void setLevelCompleted(boolean levelCompleted) {
-		this.lvlCompleted = levelCompleted;
-		if (levelCompleted) {
-			game.getAudioPlayer().lvlCompleted();
-		}
-	}
+	
 
 	public void setMaxLvlOffset(int lvlOffset) {
 		this.maxLvlOffsetX = lvlOffset;
